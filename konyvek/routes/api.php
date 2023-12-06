@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\LendingController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,9 @@ Route::apiResource('/books', BookController::class);
 
 Route::get('/lendings', [LendingController::class, 'index']);
 Route::get('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'show']);
-Route::put('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'update']);
+//Route::put('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'update']);
 Route::post('/lendings', [LendingController::class, 'store']);
-Route::delete('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'destroy']);
+Route::delete('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'destroy']); 
+
+//egyéb végpontok
+Route::patch('/user_update_password/{id}', [UserController::class, 'updatePassword']);
