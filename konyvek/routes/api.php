@@ -24,7 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/users', UserController::class);
+Route::middleware('auth.basic')->group(function () {
+    Route::apiResource('/users', UserController::class);
+});
+
+
 Route::apiResource('/copies', CopyController::class);
 Route::apiResource('/books', BookController::class);
 
