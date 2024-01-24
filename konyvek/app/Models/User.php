@@ -24,6 +24,10 @@ class User extends Authenticatable
         'permission'
     ];
 
+    public function lendings()
+    {   /* ott hogy hívják, itt hogy hívják  */
+        return $this->hasMany(Lending::class, 'user_id', 'id');   }
+
     /**
      * The attributes that should be hidden for serialization.
      *

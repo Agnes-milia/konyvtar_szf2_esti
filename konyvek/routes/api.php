@@ -26,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth.basic')->group(function () {
     Route::apiResource('/users', UserController::class);
+    //Lekérdezések
+    Route::get('lending_by_user', [UserController::class, 'lendingByUser']);
 });
 
 
