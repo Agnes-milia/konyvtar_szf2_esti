@@ -19,9 +19,15 @@ class Lending extends Model
         return $query;
     }
 
-    protected $fillable = [
+        protected $fillable = [
         'user_id',
         'copy_id',
         'start'
     ];
+
+    public function copies()
+    {    return $this->belongsTo(Copy::class, 'copy_id', 'copy_id');   }
+
+    public function users()
+    {    return $this->belongsTo(User::class, 'id', 'user_id');   }
 }

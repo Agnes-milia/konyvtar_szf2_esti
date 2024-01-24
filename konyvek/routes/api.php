@@ -28,6 +28,8 @@ Route::middleware('auth.basic')->group(function () {
     Route::apiResource('/users', UserController::class);
     //Lekérdezések
     Route::get('lending_by_user', [UserController::class, 'lendingByUser']);
+    Route::get('all_lending_user_copy', [LendingController::class, 'allLendingUserCopy']);
+    Route::get('lendings_count_user', [LendingController::class, 'lendingsCountByUser']);
 });
 
 
