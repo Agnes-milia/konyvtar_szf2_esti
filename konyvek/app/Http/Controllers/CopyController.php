@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Copy;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class CopyController extends Controller
 {
@@ -38,5 +38,22 @@ class CopyController extends Controller
     public function destroy($id)
     {
         Copy::findOrFail($id)->delete();
+    }
+
+    public function hAuthorTitle($hardcovered){
+        $books = DB::table('copies as c')
+        ->select('author', 'title')
+        ->join('books as b','c.book_id','=','b.book_id')
+        ->where('hardcovered', $hardcovered)
+        ->get();
+        return $books;
+    }
+
+    public function ev($year){
+        $copies = Copy::whereYear('publication', $year)
+        ->join('books','copies.book_id','=','books.book_id')
+        ->select('copies.copy_id', 'books.author', 'books.title')
+        ->get();
+        return $copies;
     }
 }
