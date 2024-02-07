@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reservation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->foreignId('book_id')->references('book_id')->on('books');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->date('start');
-            $table->tinyInteger('message');
+            $table->tinyInteger('message')->default(0);
             $table->timestamps();
         });
     }

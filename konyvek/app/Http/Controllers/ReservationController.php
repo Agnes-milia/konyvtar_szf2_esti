@@ -14,10 +14,10 @@ class ReservationController extends Controller
             ->where('start', $start)
             ->first();
 
-            return $res;
+        return $res;
 
-            // ->get();
-            // return $res[0];
+        // ->get();
+        // return $res[0];
     }
 
     public function index()
@@ -30,7 +30,7 @@ class ReservationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         /*
          $res->book_id = $request->book_id;
          $res->user_id = $request->user_id;
@@ -38,31 +38,20 @@ class ReservationController extends Controller
         */
 
         $res = new Reservation();
-        $res -> fill($request->all());
-        
+        $res->fill($request->all());
+
         $res->save();
     }
-   
+
     public function update(Request $request, $book_id, $user_id, $start)
     {
         $res = $this->show($book_id, $user_id, $start);
-         $res -> fill($request->all());
+        $res->fill($request->all());
         $res->save();
-        
-    } 
+    }
 
     public function destroy($book_id, $user_id, $start)
     {
         $this->show($book_id, $user_id, $start)->delete();
-
- /*     Reservation::where('book_id', $book_id)
-        ->where('user_id', $user_id)
-        ->where('start', $start)
-        ->delete();
-*/
     }
-
-    // composite keys --> update and destroy: use the show() instead of find()
-
-
 }

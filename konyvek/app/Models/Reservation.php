@@ -10,8 +10,16 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'message',
+        'book_id',
+        'user_id',
+        'start',
+        'message'
     ];
+
+    // protected $hidden = [
+    //     'created_at',
+    //     'updated_at'
+    // ];
     
     protected function setKeysForSaveQuery($query)
     {
@@ -22,6 +30,4 @@ class Reservation extends Model
             ->where('start', '=', $this->getAttribute('start'));
         return $query;
     }
-
-
 }

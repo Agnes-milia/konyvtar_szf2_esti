@@ -19,19 +19,29 @@ return new class extends Migration
             $table->timestamps();
         });
         Book::create([
-            'author' => "Asimov", 
-            'title' => "Alapítvány", 
-            
+            'author' => "Asimov",
+            'title' => "Alapítvány",
+
         ]);
         Book::create([
-            'author' => "Kafka", 
-            'title' => "A per", 
-            
+            'author' => "Kafka",
+            'title' => "A per",
         ]);
         Book::create([
-            'author' => "Marquez", 
-            'title' => "Száz év magány", 
-            
+            'author' => "Kafka",
+            'title' => "Átváltozás",
+        ]);
+        Book::create([
+            'author' => "Kafka",
+            'title' => "Kastély",
+        ]);
+        Book::create([
+            'author' => "Marquez",
+            'title' => "Száz év magány",
+        ]);
+        Book::create([
+            'author' => "Marquez",
+            'title' => "Egy előre bejelentett gyilkosság krónikája",
         ]);
     }
 
