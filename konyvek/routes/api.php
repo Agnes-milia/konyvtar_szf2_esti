@@ -63,8 +63,12 @@ Route::put('/reservations/{book_id}/{user_id}/{start}', [ReservationController::
 Route::patch('/user_update_password/{id}', [UserController::class, 'updatePassword']);
 
 // Kebab Case elérési útvonalhoz
+// 1 könyvnél több könyvvel rendelkező szerzők
 Route::get('/auth-with-more', [BookController::class, 'authorsWithMoreBooks']);
 
+// Listázd ki a mai napon visszahozott könyveket!
+Route::get('/brought-back-today', [LendingController::class, 'today']);
+Route::get('/brought-back-on/{myDate}', [LendingController::class, 'broughtBackOn']);
 // Kebab Case: auth-with-more
 // Camel Case:   authWithMore
 // Snake Case:   auth_with_more

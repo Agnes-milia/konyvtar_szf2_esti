@@ -39,7 +39,6 @@ class ReservationController extends Controller
 
         $res = new Reservation();
         $res->fill($request->all());
-
         $res->save();
     }
 
