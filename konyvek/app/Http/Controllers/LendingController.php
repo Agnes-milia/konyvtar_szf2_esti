@@ -73,4 +73,16 @@ class LendingController extends Controller
         ->where('end', $myDate)
         ->get();
     }
+
+    public function bringBack($copy_id, $start){
+        //első módosítás
+        $user = Auth::user();
+        $lending = $this->show($user->id, $copy_id, $start);
+        $lending->end = date(now());
+        $lending->save();
+        //második módosítás
+        DB::table('copies')
+        ->where('copy_id', $copy_id)
+        ->update(['status' => 0]);
+    }
 }

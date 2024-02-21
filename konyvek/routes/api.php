@@ -33,13 +33,17 @@ Route::middleware('auth.basic')->group(function () {
             Route::apiResource('/users', UserController::class);
     });
     //Lekérdezések with
-    Route::get('lending_by_user', [UserController::class, 'lendingByUser']);
-    Route::get('all_lending_user_copy', [LendingController::class, 'allLendingUserCopy']);
-    Route::get('lendings_count_user', [LendingController::class, 'lendingsCountByUser']);
+    Route::get('lending-by-user', [UserController::class, 'lendingByUser']);
+    Route::get('all-lending-user-copy', [LendingController::class, 'allLendingUserCopy']);
+    Route::get('lendings-count-user', [LendingController::class, 'lendingsCountByUser']);
     //DB lekérdezések
-    Route::get('title_count/{title}', [BookController::class, 'titleCount']);
-    Route::get('h_author_title/{hardcovered}', [CopyController::class, 'hAuthorTitle']);
+    Route::get('title-count/{title}', [BookController::class, 'titleCount']);
+    Route::get('h-author-title/{hardcovered}', [CopyController::class, 'hAuthorTitle']);
     Route::get('ev/{year}', [CopyController::class, 'ev']);
+    //2 tábla módosítása egyszerre
+    Route::patch('bring-back/{copy_id}/{start}', [LendingController::class, 'bringBack']);
+    //TRIGGER
+    Route::post('/lendings', [LendingController::class, 'store']);
 });
 
 //guest is láthatja
@@ -47,20 +51,20 @@ Route::apiResource('/copies', CopyController::class);
 Route::apiResource('/books', BookController::class);
 
 Route::get('/lendings', [LendingController::class, 'index']);
-Route::get('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'show']);
-//Route::put('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'update']);
-Route::post('/lendings', [LendingController::class, 'store']);
-Route::delete('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'destroy']); 
+Route::get('/lendings/{user-id}/{copy-id}/{start}', [LendingController::class, 'show']);
+//Route::put('/lendings/{user-id}/{copy-id}/{start}', [LendingController::class, 'update']);
+
+Route::delete('/lendings/{user-id}/{copy-id}/{start}', [LendingController::class, 'destroy']); 
 
 
 Route::get('/reservations', [ReservationController::class, 'index']);
-Route::get('/reservations/{book_id}/{user_id}/{start}',[ReservationController::class, 'show']);
+Route::get('/reservations/{book-id}/{user-id}/{start}',[ReservationController::class, 'show']);
 Route::post('/reservations', [ReservationController::class, 'store']);
-Route::delete('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class, 'destroy']);
-Route::put('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class, 'update']);
+Route::delete('/reservations/{book-id}/{user-id}/{start}', [ReservationController::class, 'destroy']);
+Route::put('/reservations/{book-id}/{user-id}/{start}', [ReservationController::class, 'update']);
 
 //egyéb végpontok
-Route::patch('/user_update_password/{id}', [UserController::class, 'updatePassword']);
+Route::patch('/user-update-password/{id}', [UserController::class, 'updatePassword']);
 
 // Kebab Case elérési útvonalhoz
 // 1 könyvnél több könyvvel rendelkező szerzők
@@ -71,5 +75,5 @@ Route::get('/brought-back-today', [LendingController::class, 'today']);
 Route::get('/brought-back-on/{myDate}', [LendingController::class, 'broughtBackOn']);
 // Kebab Case: auth-with-more
 // Camel Case:   authWithMore
-// Snake Case:   auth_with_more
+// Snake Case:   auth-with-more
 // Pascal Case:  AuthWithMore
